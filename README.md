@@ -40,7 +40,7 @@ You do not have to create the same files or directories inside `.girt` as the re
 
 Do not store information outside `.girt`.
 
-#### girt-add filenames...
+#### girt-add _filenames..._
 The `girt-add` command adds the contents of one or more files to the "**index**".
 
 Files are added to the repository in a two step process. The first step is adding them to the index.
@@ -51,7 +51,7 @@ Only ordinary files in the current directory can be added. You can assume filena
 
 The `girt-add` command, and other Girt commands, will not be given pathnames with slashes. 
 
-#### girt-commit -m message
+#### girt-commit -m _message_
 The `girt-commit` command saves a copy of all files in the index to the repository.
 
 A message describing the commit must be included as part of the commit command.
@@ -63,7 +63,7 @@ You can assume the commit message is ASCII, does not contain new-line characters
 #### girt-log
 The `girt-log` command prints a line for every commit made to the repository: each line should contain the commit number, and the commit message.
 
-#### girt-show [commit]:filename
+#### girt-show _[commit]:filename_
 The `girt-show` should print the contents of the specified filename as of the specified *commit*. If *commit* is omitted, the contents of the file in the index should be printed.
 
 You can assume the commit if specified will be a non-negative integer.
@@ -111,10 +111,10 @@ hello world
 ### Subset 1
 Subset 1 commands must be implemented in POSIX-compatible Shell.
 
-#### girt-commit [-a] -m message
+#### girt-commit _[-a]_ -m _message_
 `girt-commit` can have a `-a` option, which causes all files already in the index to have their contents from the current directory added to the index before the commit.
 
-#### girt-rm [--force] [--cached] filenames...
+#### girt-rm _[--force] [--cached] filenames..._
 `girt-rm` removes a file from the index, or from the current directory and the index.
 
 If the `--cached` option is specified, the file is removed only from the index, and not from the current directory.
@@ -166,15 +166,15 @@ h - untracked
 ### Subset 2
 Subset 2 commands must be implemented in POSIX-compatible Shell.
 
-#### girt-branch [-d] [branch-name]
+#### girt-branch _[-d] [branch-name]_
 `girt-branch` either creates a branch, deletes a branch, or lists current branch names.
 
-#### girt-checkout branch-name
+#### girt-checkout _branch-name_
 `girt-checkout` switches branches.
 
 Note that, unlike Git, you can not specify a commit or a file: you can only specify a branch. 
 
-#### girt-merge (branch-name|commit) -m message
+#### girt-merge (_branch-name_ | _commit_) -m _message_
 `girt-merge` adds the changes that have been made to the specified branch or commit to the index, and commits them.
 
 ```

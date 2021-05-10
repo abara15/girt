@@ -1,0 +1,16 @@
+#!/bin/dash
+
+# Check if the repository has been initialised
+if [ ! -d "./.girt" ]; then
+    echo "$0: error: girt repository directory .girt not found"
+    exit 1
+fi
+
+if [ $# -eq 0 ]; then
+    # Will display our log given no command arguments are given
+    cat ".girt/log.txt"
+else
+    # Arguments were given, so give an error message
+    echo "usage: girt-log"
+    exit 1
+fi

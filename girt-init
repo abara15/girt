@@ -1,0 +1,20 @@
+#!/bin/dash
+
+if [ $# -ne 0 ]; then
+    # Usage error
+    echo "usage: girt-init"
+    exit 1
+fi
+
+if [ -d "./.girt" ]; then
+    # .girt already exists, so the repository cannot be initialised
+    echo "$0: error: .girt already exists"
+    exit 1
+else
+    # .girt doesn't exist so create the repo and add our index directory and log file
+    mkdir ".girt"
+    cd ".girt"
+    mkdir "index"
+    touch "log.txt"
+    echo "Initialized empty girt repository in .girt"
+fi

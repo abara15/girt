@@ -1,0 +1,33 @@
+#!/bin/dash
+
+if [ $# -eq 0 ]; then
+    # Usage error
+    echo "usage: girt-add <filenames>"
+    exit 1
+fi
+
+# Check if the repository has been initialised
+if [ ! -d "./.girt" ]; then
+    echo "$0: error: girt repository directory .girt not found"
+    exit 1
+else
+    # Iterate through the filenames given as arguments
+    for file in "$@"; do
+        # Check if the file exists in the current directory
+        if [ -e $file ]; then
+            # Copy the file to our girt directory
+            cp "$file" ".girt/index"
+        else
+            if [ -e "./.girt/index/$file" ]; then
+                # If the deleted file is still in index, remove it
+                cp "./.girt/index/$file" "$file"
+                rm "./.girt/index/$file"
+                cp "$file" "./.girt/index/$file"
+            else
+                # Throws error since the file isn't in the current directory
+                echo "$0: error: can not open '$file'"
+                exit 1
+            fi
+        fi
+    done
+fi

@@ -1,0 +1,43 @@
+#!/bin/dash
+
+# Check if the repository has been initialised
+if [ ! -d "./.girt" ]; then
+    echo "$0: error: girt repository directory .girt not found"
+    exit 1
+fi
+
+if [ $# -eq 1 ]; then
+    # Split the argument into index and file
+    commit=$(echo $1 | cut -d":" -f1,1)
+    file=$(echo $1 | cut -d":" -f2,2)
+
+    if [ -z "$commit" ]; then
+        # Check if file exists in index directory
+        if [ -f "./.girt/index/$file" ]; then
+            # Commit was not given, so print file from index
+            cat "./.girt/index/$file"
+        else
+            # File not in index directory, so give an error message
+            echo "$0: error: '$file' not found in index"
+        fi
+    else
+        # Check if commit directory exists
+        if [ -d "./.girt/.commit.$commit" ]; then
+            # Directory exists
+            if [ -f "./.girt/.commit.$commit/$file" ]; then
+                # File exists in commit directory, so print it
+                cat "./.girt/.commit.$commit/$file"
+            else
+                # File not in commit directory, so give an error message
+                echo "$0: error: '$file' not found in commit $commit"
+            fi
+        else
+            # Commit directory doesn't exist, so give an error message
+            echo "$0: error: unknown commit '$commit'"
+        fi
+    fi
+else
+    # Too many arguments were given, so give an error message
+    echo "usage: girt-show <commit>:<filename>"
+    exit 1
+fi

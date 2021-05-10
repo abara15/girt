@@ -1,0 +1,35 @@
+Diary Log: COMP2041 Assignment 1 Girt
+Anthony Barakat - z5258213
+
+Date        Start       Stop        Activity        Comments
+-------------------------------------------------------------------------------------------------------------------------
+16/03/21    13:22       13:23       Diary           Created diary file.
+
+16/03/21    13:25       13:32       Coding          Implement the girt-init command from Subset 0.
+
+31/03/21    12:30       13:00       Coding          Implemented girt-log command and most of girt-add and girt-init.
+
+03/04/21    21:15       21:20       Debugging       Fixed girt-log -> error checking in scenario arguments were passed.
+
+03/04/21    21:20       22:00       Coding          Working on girt-add command. Implemented most of the error checking, 
+                                                    just need to check for ordinary file.
+
+05/04/21    20:30       22:40       Coding          Implemented girt-commit for Subset 0. Did this with error checking, 
+                                                    comparing files to previous commit etc.
+
+05/04/21    22:40       23:10       Coding          Implemented girt-show for Subset 0. Did this with all error checking.
+
+05/04/21    23:10       23:15       Coding          Implemented girt-commit for Subset 1.
+
+06/04/21    06:30       07:15       Debugging       Fixed the errors for girt-commit so now Subset 0 works completely and 
+                                                    so does girt-commit for Subset 1.
+
+06/04/21    08:00       08:15       Debugging/      Ran autotests for Subset 0. Had some problems with girt-commit so I
+                                    Testing         had to debug but now passing all Subset 0 autotests.
+
+06/04/21    08:30       11:30       Coding/         Trying to figure our girt-rm but only been able to pass a maximum of 4 
+                                    Debugging/      autotests for Subset 1.
+                                    Testing
+
+06/04/21    11:30       13:45       Testing/        Wrote my own testing suite and finished diary.
+                                    Diary

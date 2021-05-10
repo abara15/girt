@@ -1,0 +1,60 @@
+#!/bin/dash
+
+# Check if the repository has been initialised
+if [ ! -d "./.girt" ]; then
+    echo "$0: error: girt repository directory .girt not found"
+    exit 1
+fi
+
+if [ "$1" = "--force" ]; then
+    # Force option is given
+    for filename in $@; do
+        if [ "$filename" = "--force" ]; then
+            # Skip our options
+            continue
+        else
+            if [ -f "$filename" ] && [ -f "./.girt/index/$filename" ]; then
+                # Remove file from the current directory and index directory
+                rm "$filename"
+                rm "./.girt/index/$filename"
+            else
+                echo "$0: error: '$filename' is not in the girt directory"
+                exit 1
+            fi
+        fi
+    done
+
+
+elif [ "$1" = "--cached" ]; then
+    # Cached option is given
+    for filename in $@; do
+        if [ "$filename" = "--cached" ]; then
+            # Skip our options
+            continue
+        else
+            if [ -f "./.girt/index/$filename" ]; then
+                # Remove file from the index directory
+                rm "./.girt/index/$filename"
+            else
+                echo "$0: error: '$filename' is not in the girt directory"
+                exit 1
+            fi
+        fi
+    done
+
+
+elif [ $# -eq 0 ]; then
+    echo "$0: usage: girt-rm [--force] [--cached] filenames..."
+    exit 1
+else
+    # No options are given
+    for filename in $@; do
+        if [ -f "./.girt/index/$filename" ]; then
+            # Remove file from the index directory
+            rm "./.girt/index/$filename"
+        else
+            echo "$0: error: '$filename' is not in the girt directory"
+            exit 1
+        fi
+    done
+fi
